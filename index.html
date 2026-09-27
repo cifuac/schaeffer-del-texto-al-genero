@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Del texto al género · Schaeffer · laboratorio</title>
+<meta name="description" content="Presentación interactiva sobre «Del texto al género. Notas sobre la problemática genérica», de Jean-Marie Schaeffer.">
+<link rel="stylesheet" href="assets/lab.css">
+</head>
+<body>
+
+<!-- lienzo fijo 1280 × 720 (16:9); lab.js lo escala para llenar la ventana -->
+<div class="stage-frame" id="stageFrame">
+
+<canvas id="ambient" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <button type="button" class="brand" data-goto="p0">
+    <span class="brand-mark" aria-hidden="true">§</span>
+    <span class="brand-text">
+      <b>Del texto al género</b>
+      <i>Jean-Marie Schaeffer</i>
+    </span>
+  </button>
+
+  <p class="chapter-tag" id="chapterTag" aria-live="polite"></p>
+
+  <div class="tools">
+    <button type="button" id="btnIndex" class="tool" aria-expanded="false" aria-controls="indexPanel">Índice <kbd>i</kbd></button>
+    <button type="button" id="btnFull" class="tool" aria-label="Pantalla completa">Pantalla <kbd>f</kbd></button>
+    <button type="button" id="btnTheme" class="tool" aria-label="Cambiar tema claro u oscuro">Tema <kbd>t</kbd></button>
+  </div>
+</header>
+
+<div id="indexPanel" class="index-panel" role="dialog" aria-modal="true" aria-label="Índice de estaciones" hidden>
+  <div class="index-inner">
+    <p class="index-title">Las estaciones</p>
+    <div id="indexList" class="index-grid"></div>
+    <p class="index-keys"><kbd>←</kbd><kbd>→</kbd> avanzar · <kbd>i</kbd> índice · <kbd>f</kbd> pantalla · <kbd>t</kbd> tema · <kbd>esc</kbd> cerrar</p>
+    <button type="button" class="index-close" data-close-index aria-label="Cerrar índice">×</button>
+  </div>
+</div>
+
+<main class="deck" id="deck">
+<div class="track" id="track">
+
+<!-- ══════════════════════════ 0 · PORTADA ══════════════════════════ -->
+<section class="panel cover" id="p0" data-nav="Portada" data-chapter="Portada" data-accent="oro">
+  <div class="panel-inner center">
+    <p class="p-kicker" data-anim>Laboratorio de lectura · Teoría de los géneros literarios</p>
+    <h1 class="cover-title" data-anim>Del texto <span class="arrow" aria-hidden="true">→</span> al género</h1>
+    <p class="cover-sub" data-anim>Notas sobre la problemática genérica</p>
+    <p class="cover-author" data-anim>Jean-Marie Schaeffer</p>
+
+    <div class="thesis" data-anim>
+      <p class="thesis-label">La tesis en una frase</p>
+      <p class="thesis-body">
+        El artículo no contesta la pregunta «¿qué es un género?»: demuestra que está mal
+        planteada. En su lugar separa dos objetos que la tradición había fundido en uno —el
+        <b class="c-genero">género</b>, categoría de clasificación retrospectiva y norma de
+        lectura, y la <b class="c-genericidad">genericidad</b>, función productiva del texto— y
+        devuelve el problema genérico desde la ontología a la textualidad.
+      </p>
+    </div>
+
+    <div class="cover-meta" data-anim>
+      <div><p class="k">Fuente</p><p class="v">Garrido Gallardo (ed.), <i>Teoría de los géneros literarios</i>, Arco/Libros, 1988, pp. 155–179.</p></div>
+      <div><p class="k">20 estaciones</p><p class="v">Cada una contiene un aparato que se manipula: ejecutan el argumento y, en varios casos, lo hacen fallar.</p></div>
+      <div><p class="k">Navegación</p><p class="v">Avanza con <kbd>→</kbd> o deslizando. <kbd>f</kbd> para proyectar a pantalla completa.</p></div>
+    </div>
+
+    <button type="button" class="cta" data-goto="p1" data-anim>
+      Empezar por la pregunta <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 1 · LA PREGUNTA ══════════════════════════ -->
+<section class="panel" id="p1" data-nav="La pregunta que descarrila" data-chapter="§ 1 · El planteamiento" data-accent="coral">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 1 <span class="pg">pp. 155–156</span></p>
+      <h2>La pregunta que descarrila</h2>
+      <p class="lead">La pregunta por el género, tal como suele formularse, lleva incorporada su trampa: se transforma sola en una pregunta que la teoría literaria no puede ganar.</p>
+    </header>
+
+    <div class="apparatus" id="ap-preguntas" data-step="0" data-anim>
+      <div class="rail-diagram">
+        <div class="qnode q1" data-s="0">
+          <span class="qtag">1</span>
+          <p>¿Qué es un género?</p>
+        </div>
+
+        <div class="conn conn-down" data-s="1" aria-hidden="true"></div>
+
+        <div class="qnode q2" data-s="1">
+          <span class="qtag">2</span>
+          <p>¿Cuál es la relación que vincula el (los) texto(s) con el (los) género(s)?</p>
+        </div>
+
+        <div class="fork" data-s="2">
+          <svg class="fork-brace" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 30 0 V 22 H 250 V 46 M 250 22 H 750 V 46" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <p class="fork-label">Primera confusión · dos preguntas fundidas en una</p>
+          <div class="fork-cols">
+            <div class="qnode q2a" data-s="2">
+              <span class="qtag">2a</span>
+              <p>¿Qué vincula <b>los textos</b> con <b>los géneros</b>?</p>
+              <span class="qfoot">clasificación</span>
+            </div>
+            <div class="qnode q2b" data-s="2">
+              <span class="qtag">2b</span>
+              <p>¿Qué vincula <b>un texto dado</b> con <b>«su» género</b>?</p>
+              <span class="qfoot">producción · historia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="conn conn-switch" data-s="3" aria-hidden="true"><span class="switch-mark">segunda confusión · el desvío</span></div>
+
+        <div class="qnode q3 danger" data-s="3">
+          <span class="qtag">3</span>
+          <p>¿Cuáles son las relaciones entre los fenómenos empíricos y los conceptos?</p>
+          <span class="qfoot">ontología · querella de los universales</span>
+        </div>
+      </div>
+
+      <div class="panel-side">
+        <div class="step-readout" id="ro-preguntas" aria-live="polite"></div>
+        <div class="stepper">
+          <button type="button" class="sbtn" data-step-prev aria-label="Paso anterior">
+            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="sdots" id="sdots-preguntas"></div>
+          <button type="button" class="sbtn" data-step-next aria-label="Paso siguiente">
+            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <blockquote class="quote mini">
+          <p>«la mayoría de las teorías genéricas no son verdaderamente teorías literarias, sino más bien teorías del conocimiento»</p>
+          <cite>p. 155</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">01</span>
+</section>
+
+<!-- ══════════════════════════ 2 · TRILEMA ══════════════════════════ -->
+<section class="panel" id="p2" data-nav="El trilema ontológico" data-chapter="§ 2 · La falsa disputa" data-accent="violeta">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 2 <span class="pg">pp. 156–160</span></p>
+      <h2>El trilema ontológico</h2>
+      <p class="lead">Desviado el debate hacia la pregunta (3), solo quedan tres casillas. Parecen enfrentadas. Ábrelas.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-trilema" data-anim>
+      <div class="trilemma">
+        <article class="tcard" data-t="realismo" tabindex="0" role="button" aria-expanded="false">
+          <p class="tname">Realismo</p>
+          <p class="tclaim">El género es real. Los textos individuales realizan una esencia previa.</p>
+          <div class="tdetail">
+            <p><b>Hegel.</b> El sistema triádico de los géneros depende de una ontología para la cual lo real es la autorrealización del Concepto.</p>
+            <p><b>Fr. Schlegel.</b> Combina realismo e idealismo, ambos «regionales»: la poesía antigua sería genérica; la posterior, a-genérica. La metafísica romántica hace de la Antigüedad la edad de la Objetividad —hegemonía de los géneros— y de la era abierta por el nacimiento de Cristo la de la Subjetividad —hegemonía de las obras individuales—.</p>
+          </div>
+        </article>
+
+        <article class="tcard" data-t="nominalismo" tabindex="0" role="button" aria-expanded="false">
+          <p class="tname">Nominalismo</p>
+          <p class="tclaim">Solo los textos individuales son reales. Los géneros son pseudo-conceptos.</p>
+          <div class="tdetail">
+            <p><b>Croce.</b> La polémica contra las teorías genéricas es inseparable de una posición que no ve en las categorías genéricas más que «pseudo-conceptos»: útiles, a lo sumo, como clasificaciones de bibliotecario.</p>
+            <p>La exterioridad del género no desaparece: se vuelve pura nada. El problema ontológico sigue mandando.</p>
+          </div>
+        </article>
+
+        <article class="tcard" data-t="constructivismo" tabindex="0" role="button" aria-expanded="false">
+          <p class="tname">Constructivismo</p>
+          <p class="tclaim">Ni una cosa ni otra: el género es una construcción del observador.</p>
+          <div class="tdetail">
+            <p>Llega el último y se presenta como la salida del dilema, fundado en una reflexión crítica contra las dos posiciones anteriores.</p>
+            <p>Schaeffer no se lo concede: no libra del dilema ontológico, sino que propone «las ventajas de un trilema».</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="converge-controls">
+        <button type="button" class="btn primary" id="btnConverge" data-goto="p3">Ver qué tienen debajo <span class="ic" aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">02</span>
+</section>
+
+<!-- ══════════════════════════ 3 · LOS DOS POSTULADOS ══════════════════════════ -->
+<section class="panel" id="p3" data-nav="Los dos postulados de más" data-chapter="§ 2 · La falsa disputa" data-accent="violeta">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 2 <span class="pg">p. 160</span></p>
+      <h2>Las tres se apoyan en lo mismo</h2>
+      <p class="lead">Las tres convierten el discurso genérico en discurso ontológico. Y para preguntar por la relación ontológica entre texto y género hay que haberlos constituido antes en <b>exterioridad recíproca</b>.</p>
+    </header>
+
+    <div class="postulates" data-anim>
+      <div class="post">
+        <p class="pnum">i</p>
+        <p class="ptitle">El texto como <i>analogon</i> de objeto físico</p>
+        <p class="pbody">Reificación: el texto tratado como una cosa cerrada, con contornos propios, susceptible de ser explicada como se explica la constitución de un cuerpo.</p>
+        <p class="pgo" data-goto="p7">Se desmonta en § 4 →</p>
+      </div>
+      <div class="post">
+        <p class="pnum">ii</p>
+        <p class="ptitle">El género como exterioridad transcendente</p>
+        <p class="pbody">Un término externo «referido a» ese objeto casi físico: molde de competencia, esencia oculta, estructura universal.</p>
+        <p class="pgo" data-goto="p4">Se desmonta en § 3 →</p>
+      </div>
+    </div>
+
+    <div class="verdict-strip" data-anim>
+      <p>Retirados los dos postulados, el trilema no se resuelve: <b>se queda sin objeto</b>.</p>
+    </div>
+
+    <blockquote class="quote" data-anim>
+      <p>«no nos libra del dilema ontológico, sino que nos propone las “ventajas de un trilema”»</p>
+      <cite>p. 160</cite>
+    </blockquote>
+  </div>
+  <span class="p-ghost" aria-hidden="true">03</span>
+</section>
+
+<!-- ══════════════════════════ 4 · HELDENEPOS · PLANTEAMIENTO ══════════════════════════ -->
+<section class="panel" id="p4" data-nav="El caso: la epopeya heroica" data-chapter="§ 3 · La demostración" data-accent="oro">
+  <div class="panel-inner">
+    <header class="p-head wide" data-anim>
+      <p class="p-kicker">§ 3 <span class="pg">pp. 162–166</span></p>
+      <h2>La fábrica de un género inexistente</h2>
+    </header>
+
+    <div class="case-brief" data-anim>
+      <div class="case-col">
+        <p class="case-h">El objeto</p>
+        <p>La <i>Germanistik</i> del siglo XIX bautizó un conjunto de textos medievales como
+        <b><i>das deutsche Heldenepos</i></b>, la epopeya heroica germánica, y lo opuso a la
+        <b>epopeya cortesana</b> de inspiración artúrica.</p>
+      </div>
+      <div class="case-col">
+        <p class="case-h">La carga</p>
+        <p>La oposición era a la vez estética y política: el alma germánica frente a un producto
+        de importación francesa; la poesía espontánea frente a la poesía culta. Corrieron
+        <b>ríos de tinta patriótica y nacionalista</b>.</p>
+      </div>
+      <div class="case-col">
+        <p class="case-h">El postulado</p>
+        <p>El género se dedujo de una <b><i>germanische Weltanschauung</i></b> —una cosmovisión
+        germánica— situada hacia el año 500 d.C. Nadie la documentó: se postuló.</p>
+      </div>
+    </div>
+
+    <div class="case-cta" data-anim>
+      <p>La estación siguiente permite <b>encender y apagar ese postulado</b> y observar qué queda de pie.</p>
+      <button type="button" class="btn primary" data-goto="p5">Abrir el aparato <span class="ic" aria-hidden="true">→</span></button>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">04</span>
+</section>
+
+<!-- ══════════════════════════ 5 · HELDENEPOS · APARATO ══════════════════════════ -->
+<section class="panel" id="p5" data-nav="Encender y apagar el postulado" data-chapter="§ 3 · La demostración" data-accent="oro">
+  <div class="panel-inner">
+    <div class="apparatus col hero" id="ap-heldenepos" data-anim>
+      <div class="mode-switch" role="tablist" aria-label="Estados del aparato">
+        <button type="button" role="tab" class="mbtn is-on" data-mode="proyeccion" aria-selected="true">1 · Proyección (siglo XIX)</button>
+        <button type="button" role="tab" class="mbtn" data-mode="textual" aria-selected="false">2 · Prueba textual</button>
+        <button type="button" role="tab" class="mbtn" data-mode="germanistik" aria-selected="false">3 · ¿Dónde está el género?</button>
+      </div>
+
+      <div class="held-grid">
+        <div class="stage">
+          <svg id="svgHeld" viewBox="0 0 1120 500" role="img" aria-label="Diagrama de la construcción del género de la epopeya heroica germánica">
+            <defs>
+              <radialGradient id="sunGrad" cx="50%" cy="50%">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity=".8"/>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="rayGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity=".95"/>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity=".25"/>
+              </linearGradient>
+            </defs>
+
+            <g class="ideal" id="idealGroup">
+              <circle class="ideal-halo" cx="560" cy="92" r="104" fill="url(#sunGrad)"/>
+              <circle class="ideal-ring" cx="560" cy="92" r="54"/>
+              <circle class="ideal-core" cx="560" cy="92" r="34"/>
+              <text class="ideal-label" x="560" y="20" text-anchor="middle">germanische Weltanschauung · h. 500 d.C.</text>
+              <text class="ideal-sub" x="560" y="39" text-anchor="middle">cosmovisión germánica postulada, no documentada</text>
+              <text class="ideal-plato" x="560" y="89" text-anchor="middle">texto</text>
+              <text class="ideal-plato" x="560" y="105" text-anchor="middle">ideal</text>
+            </g>
+
+            <g class="rays" id="rays"></g>
+            <g class="edges" id="edges"></g>
+            <g class="nodes" id="heldNodes"></g>
+
+            <g class="tline" id="tline">
+              <line class="tline-axis" x1="100" y1="452" x2="1020" y2="452"/>
+              <g class="tmark" data-w="xiii">
+                <circle cx="300" cy="452" r="6"/>
+                <text x="300" y="478" text-anchor="middle">siglo XIII · los textos</text>
+              </g>
+              <g class="tmark" data-w="xix">
+                <circle cx="820" cy="452" r="6"/>
+                <text x="820" y="478" text-anchor="middle">siglo XIX · el género</text>
+              </g>
+              <path class="tline-arrow" d="M 560 146 C 720 240 820 330 820 434"/>
+            </g>
+          </svg>
+          <p class="stage-caption" id="heldCaption" aria-live="polite"></p>
+        </div>
+
+        <div class="findings" id="heldFindings"></div>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">05</span>
+</section>
+
+<!-- ══════════════════════════ 6 · HELDENEPOS · CONCLUSIÓN ══════════════════════════ -->
+<section class="panel" id="p6" data-nav="Un género de la Germanistik" data-chapter="§ 3 · La demostración" data-accent="rojo">
+  <div class="panel-inner center">
+    <blockquote class="quote hero-quote" data-anim>
+      <p>«La epopeya heroica es ciertamente un género, pero no un género literario del siglo XIII:
+      es un género metaliterario del siglo XIX, un género de la <i>Germanistik</i>»</p>
+      <cite>p. 166</cite>
+    </blockquote>
+
+    <div class="two-col" data-anim>
+      <div class="note">
+        <p class="note-h">La estructura es platónica</p>
+        <p>No se parte de una red de similitudes existente entre un conjunto de textos: se postula
+        un <b>texto ideal</b> del que los textos reales no serían más que derivados más o menos
+        perfectos, como los objetos empíricos son, según Platón, copias imperfectas de las Ideas.</p>
+      </div>
+      <div class="note">
+        <p class="note-h">Lo que nadie comprobó</p>
+        <p>Los rasgos aislados se relacionan, uno por uno, con la cosmovisión postulada, pero
+        <b>no tejen ninguna red de similitudes entre las obras</b>. El género se sostiene mientras
+        el postulado esté encendido, y solo mientras lo esté.</p>
+      </div>
+    </div>
+
+    <p class="lesson-line" data-anim>Un género construido por proyección retrospectiva describe siempre
+    mejor a quien lo construye que a los textos que pretende agrupar.</p>
+  </div>
+  <span class="p-ghost" aria-hidden="true">06</span>
+</section>
+
+<!-- ══════════════════════════ 7 · OBJETO O CADENA ══════════════════════════ -->
+<section class="panel" id="p7" data-nav="¿Objeto o cadena?" data-chapter="§ 4 · Qué es un texto" data-accent="turquesa">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 4 <span class="pg">pp. 166–168</span></p>
+      <h2>¿Objeto o cadena?</h2>
+      <p class="lead">La fenomenalidad propia de la textualidad, en tanto que dimensión lingüística, nunca es la de un sistema cerrado, sino la de una <b>cadena abierta</b>.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-cadena" data-anim>
+      <div class="mode-switch two" role="tablist" aria-label="Concepciones del texto">
+        <button type="button" role="tab" class="mbtn is-on" data-cad="organismo" aria-selected="true">Texto-organismo</button>
+        <button type="button" role="tab" class="mbtn" data-cad="cadena" aria-selected="false">Cadena abierta</button>
+      </div>
+
+      <div class="cad-grid">
+        <div class="stage tight">
+          <svg id="svgCad" viewBox="0 0 900 300" role="img" aria-label="El texto como objeto cerrado frente al texto como cadena abierta">
+            <g class="cad-organismo">
+              <rect class="organ-seal" x="312" y="42" width="276" height="216" rx="24"/>
+              <rect class="organ-body" x="330" y="60" width="240" height="180" rx="18"/>
+              <g class="organ-lattice">
+                <line x1="360" y1="100" x2="540" y2="100"/>
+                <line x1="360" y1="140" x2="540" y2="140"/>
+                <line x1="360" y1="180" x2="540" y2="180"/>
+                <line x1="400" y1="80" x2="400" y2="220"/>
+                <line x1="450" y1="80" x2="450" y2="220"/>
+                <line x1="500" y1="80" x2="500" y2="220"/>
+              </g>
+              <circle class="organ-lens" cx="450" cy="150" r="52"/>
+              <line class="organ-lens-stem" x1="487" y1="187" x2="528" y2="228"/>
+              <text class="cad-label" x="450" y="286" text-anchor="middle">sistema autónomo, cerrado y unificado · lectura inmanente</text>
+            </g>
+
+            <g class="cad-cadena">
+              <g class="chain">
+                <ellipse class="link ghost" cx="120" cy="150" rx="52" ry="34"/>
+                <ellipse class="link" cx="250" cy="150" rx="52" ry="34"/>
+                <ellipse class="link focus" cx="380" cy="150" rx="52" ry="34"/>
+                <ellipse class="link" cx="510" cy="150" rx="52" ry="34"/>
+                <ellipse class="link ghost" cx="640" cy="150" rx="52" ry="34"/>
+                <ellipse class="link ghost2" cx="770" cy="150" rx="52" ry="34"/>
+              </g>
+              <g class="threads">
+                <path d="M 380 116 C 380 70 300 60 250 52"/>
+                <path d="M 380 116 C 380 66 470 58 540 46"/>
+                <path d="M 380 184 C 380 232 290 244 230 254"/>
+                <path d="M 380 184 C 380 236 480 246 560 256"/>
+              </g>
+              <text class="cad-label" x="450" y="290" text-anchor="middle">cadena abierta · el texto es un eslabón en una red textual</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="cad-notes">
+          <div class="note">
+            <p class="note-h">Lo que se pierde</p>
+            <p>La concepción del texto como sistema autónomo, leído de forma inmanente y no
+            referencial, <b>pierde su solidez de evidencia natural</b>.</p>
+          </div>
+          <div class="note">
+            <p class="note-h">Lo que se gana</p>
+            <p>Pasa a verse como lo que es: <b>un modelo de lectura</b>, un hecho prescriptivo;
+            un algoritmo que se volvió hegemónico desde la época romántica.</p>
+          </div>
+          <div class="riffaterre">
+            <p><b>El matiz sobre Riffaterre.</b> Que «el referente no es pertinente» propone un
+            modelo de lectura, y como tal es legítimo. El escepticismo empieza en el título
+            <i>La explicación de los hechos literarios</i>: el texto <b>no es algo que esté por
+            explicar, sino algo que está por leer</b>. <span class="pgi">p. 168</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">07</span>
+</section>
+
+<!-- ══════════════════════════ 8 · CIRCUITO ══════════════════════════ -->
+<section class="panel" id="p8" data-nav="El circuito sin retorno" data-chapter="§ 4 · Qué es un texto" data-accent="turquesa">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 4 <span class="pg">p. 168</span></p>
+      <h2>El circuito sin retorno</h2>
+      <p class="lead">Toda lectura es la resultante de al menos <b>dos intenciones</b>: la del codificador y la del descodificador. Compara las dos situaciones.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-circuito" data-anim>
+      <div class="mini-switch big" role="group" aria-label="Situación comunicativa">
+        <button type="button" class="minib is-on" data-circ="texto">Texto</button>
+        <button type="button" class="minib" data-circ="conversacion">Conversación</button>
+      </div>
+      <div class="stage">
+        <svg id="svgCirc" viewBox="0 0 1000 212" role="img" aria-label="Circuito entre codificador y descodificador">
+          <g class="circ">
+            <rect class="cbox" x="60" y="38" width="212" height="68" rx="10"/>
+            <text class="clab" x="166" y="78" text-anchor="middle">codificador</text>
+            <rect class="cbox mid" x="394" y="38" width="212" height="68" rx="10"/>
+            <text class="clab" x="500" y="78" text-anchor="middle" id="circMid">texto</text>
+            <rect class="cbox" x="728" y="38" width="212" height="68" rx="10"/>
+            <text class="clab" x="834" y="78" text-anchor="middle">descodificador</text>
+
+            <path class="carrow" d="M 278 72 L 378 72"/>
+            <polygon class="carrow-head" points="388,72 376,66 376,78"/>
+            <path class="carrow" d="M 612 72 L 712 72"/>
+            <polygon class="carrow-head" points="722,72 710,66 710,78"/>
+
+            <path class="cback" d="M 834 110 C 834 168 166 168 166 118"/>
+            <polygon class="cback-head" points="166,108 160,120 172,120"/>
+            <text class="cback-lab" x="500" y="200" text-anchor="middle" id="circBack">sin retroalimentación en acto</text>
+            <g class="ccut" id="circCut">
+              <circle cx="500" cy="152" r="15"/>
+              <line x1="493" y1="145" x2="507" y2="159"/>
+              <line x1="507" y1="145" x2="493" y2="159"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p class="circ-note" id="circNote" aria-live="polite"></p>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">08</span>
+</section>
+
+<!-- ══════════════════════════ 9 · ROSA TRANSTEXTUAL ══════════════════════════ -->
+<section class="panel" id="p9" data-nav="La rosa transtextual" data-chapter="§ 5 · La grieta de Genette" data-accent="indigo">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 5 <span class="pg">pp. 169–171</span></p>
+      <h2>La rosa transtextual y el zócalo vacío</h2>
+      <p class="lead">Pulsa cada relación: todas tienen su pareja de textos. Todas menos una.</p>
+    </header>
+
+    <div class="apparatus" id="ap-rosa" data-anim>
+      <div class="stage">
+        <svg id="svgRosa" viewBox="62 16 782 432" role="img" aria-label="Las cinco relaciones transtextuales alrededor del texto">
+          <defs>
+            <filter id="satGlow" x="-60%" y="-140%" width="220%" height="380%">
+              <feGaussianBlur stdDeviation="5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g class="rosa-links" id="rosaLinks"></g>
+          <circle class="rosa-core-halo" cx="450" cy="252" r="66"/>
+          <circle class="rosa-core" cx="450" cy="252" r="50"/>
+          <text class="rosa-core-lab" x="450" y="258" text-anchor="middle">TEXTO</text>
+          <g class="rosa-sats" id="rosaSats"></g>
+          <g class="rosa-partner" id="rosaPartner"></g>
+        </svg>
+      </div>
+
+      <div class="panel-side">
+        <div class="rosa-buttons" id="rosaButtons" role="group" aria-label="Relaciones transtextuales"></div>
+        <div class="rosa-readout" id="rosaReadout" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">09</span>
+</section>
+
+<!-- ══════════════════════════ 10 · LAS DOS MÁQUINAS ══════════════════════════ -->
+<section class="panel" id="p10" data-nav="Pertenencia frente a genericidad" data-chapter="§ 5 · La grieta de Genette" data-accent="indigo">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 5 <span class="pg">pp. 171–172</span></p>
+      <h2>La segunda grieta: dentro de la propia architextualidad</h2>
+      <p class="lead">Genette mete tres cosas en la misma caja. Las dos primeras se comportan como una pertenencia limpia. La tercera, no. Acciona las máquinas.</p>
+    </header>
+
+    <div class="machines" data-anim>
+      <div class="machine" id="machPert">
+        <p class="mach-title">Modos de enunciación · tipos de discurso</p>
+        <p class="mach-sub">Determinación de sentido único</p>
+        <svg viewBox="0 0 460 160" role="img" aria-label="Máquina de pertenencia: el texto entra y el modo no cambia">
+          <polygon class="mold" points="110,28 350,28 350,132 110,132"/>
+          <text class="mold-lab" x="230" y="18" text-anchor="middle">modo narrativo</text>
+          <g class="feeder"><rect class="feed-text" x="-30" y="68" width="56" height="26" rx="4"/></g>
+          <text class="mold-note" x="230" y="152" text-anchor="middle">el molde no se altera</text>
+        </svg>
+        <button type="button" class="btn small" data-run="pert">Introducir un texto</button>
+        <p class="mach-out">Todo texto pertenece al modo narrativo, al dramático o al mixto. La elección
+        es <b>condición previa</b> del texto, y el texto no tiene ningún influjo sobre el cariz del
+        modo elegido.</p>
+      </div>
+
+      <div class="machine accent" id="machGen">
+        <p class="mach-title">Genericidad</p>
+        <p class="mach-sub">Determinación recíproca</p>
+        <svg viewBox="0 0 460 160" role="img" aria-label="Máquina de genericidad: el texto entra y el género se deforma">
+          <polygon class="mold live" id="genMold" points="110,28 350,28 350,132 110,132"/>
+          <text class="mold-lab" x="230" y="18" text-anchor="middle">el género</text>
+          <g class="feeder"><rect class="feed-text" x="-30" y="68" width="56" height="26" rx="4"/></g>
+          <text class="mold-note" x="230" y="152" text-anchor="middle">el molde queda modificado</text>
+        </svg>
+        <button type="button" class="btn small" data-run="gen">Introducir un texto</button>
+        <p class="mach-out"><b>Todo texto modifica «su» género.</b> Para todo texto en gestación, el
+        modelo genérico es un <b>material</b>, entre otros, sobre el que trabaja. <span class="pgi">p. 172</span></p>
+      </div>
+    </div>
+
+    <blockquote class="quote" data-anim>
+      <p>«si bien hay architextualidad, no hay en cambio architexto, sino en un sentido metafórico»</p>
+      <cite>p. 171</cite>
+    </blockquote>
+  </div>
+  <span class="p-ghost" aria-hidden="true">10</span>
+</section>
+
+<!-- ══════════════════════════ 11 · MÁQUINA DEL TIEMPO ══════════════════════════ -->
+<section class="panel" id="p11" data-nav="La máquina del tiempo" data-chapter="§ 6 · El error de lógica temporal" data-accent="salvia">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 6 <span class="pg">pp. 172–174</span></p>
+      <h2>La máquina del tiempo genérico</h2>
+      <p class="lead">Un género <b>G</b> formado por la clase {a…g} solo queda fijado cuando el último texto entra en circulación. Mueve el cursor y mira qué modelo tiene disponible cada texto.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-tiempo" data-anim>
+      <div class="timeline" id="timeline">
+        <div class="tl-axis"></div>
+        <div class="tl-texts" id="tlTexts"></div>
+        <div class="tl-class" id="tlClass">
+          <span class="tl-class-lab">Género <b>G</b> · clasificación retrospectiva</span>
+        </div>
+        <div class="tl-ghost" id="tlGhost" hidden><span>modelo de competencia proyectado hacia atrás</span></div>
+      </div>
+
+      <div class="tl-controls">
+        <label class="slider-label" for="tlRange">Texto en gestación, en el momento <i>t</i></label>
+        <input type="range" id="tlRange" min="0" max="6" step="1" value="3" aria-describedby="tlReadout">
+        <label class="switch-lab">
+          <input type="checkbox" id="tlProject">
+          <span>Proyectar <b>G</b> hacia atrás</span>
+        </label>
+      </div>
+
+      <div class="tl-bottom">
+        <div class="tl-readout" id="tlReadout" aria-live="polite"></div>
+        <div class="callout warn" id="tlWarn" hidden>
+          <p><b>Error de lógica temporal.</b> El término «modelo de competencia» delata la tendencia
+          a proyectar el texto ideal sobre la empiricidad textual y a postular que los textos han
+          sido generados desde ese modelo. Pero para cualquier texto anterior al último de la serie,
+          el modelo genérico está formado <b>únicamente por los textos anteriores</b>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">11</span>
+</section>
+
+<!-- ══════════════════════════ 12 · GÉNERO ≠ GENERICIDAD ══════════════════════════ -->
+<section class="panel" id="p12" data-nav="Género ≠ genericidad" data-chapter="§ 7 · La distinción" data-accent="dual">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 7 <span class="pg">pp. 174–175</span></p>
+      <h2>La distinción que reorganiza el problema</h2>
+      <p class="lead">Dos ángulos complementarios pero distintos, con estatuto epistemológico diferente. Es lo que hay que dejar fijado en la pizarra.</p>
+    </header>
+
+    <div class="dual" data-anim>
+      <div class="dual-card genero">
+        <p class="dual-name">Género</p>
+        <p class="dual-def">Categoría de clasificación retrospectiva.</p>
+        <ul>
+          <li>Pertenece al campo de las <b>categorías de la lectura</b>: estructura un tipo de lectura.</li>
+          <li>Su componente prescriptivo es una <b>norma de lectura</b>, no de escritura.</li>
+          <li>Depende de la estrategia discursiva del <b>metatexto</b>: el teórico elige fronteras, nivel de abstracción y modelo explicativo.</li>
+          <li>No es arbitraria: se manifiesta por similitudes textuales —<b><i>Familienähnlichkeiten</i></b>, parecidos de familia, por decirlo con Wittgenstein—.</li>
+        </ul>
+      </div>
+      <div class="dual-vs" aria-hidden="true">≠</div>
+      <div class="dual-card genericidad">
+        <p class="dual-name">Genericidad</p>
+        <p class="dual-def">Función textual.</p>
+        <ul>
+          <li>Es un <b>factor productivo</b> de la constitución de la textualidad.</li>
+          <li>Trabaja el armazón de uno o varios <b>hipotextos</b>: un remiendo más o menos transformador.</li>
+          <li>Es dinámica e histórica: todo texto modifica el género que hereda.</li>
+          <li>Tiene dos regímenes —<b>reduplicación</b> y <b>transformación</b>—, dos caras de la misma función.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" data-anim>
+      <p><b>El giro del apartado.</b> Cada texto tiene su propio género. Y a la inversa: el género en
+      tanto que metatexto posee su propia genericidad. La de la <i>Estética</i> de Hegel no es
+      idéntica a la del <i>Arte poética</i> de Boileau. <span class="pgi">p. 175</span></p>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">12</span>
+</section>
+
+<!-- ══════════════════════════ 13 · CLASIFICADOR ══════════════════════════ -->
+<section class="panel" id="p13" data-nav="Clasificador" data-chapter="§ 7 · La distinción" data-accent="dual">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 7 <span class="pg">ejercicio</span></p>
+      <h2>Clasificador</h2>
+      <p class="lead">Asigna cada afirmación a su columna y comprueba. Pensado para proyectar y resolver en voz alta.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-clasificador" data-anim>
+      <div class="quizz" id="quizz"></div>
+      <div class="quiz-bar">
+        <button type="button" class="btn primary" id="quizCheck">Comprobar</button>
+        <button type="button" class="btn" id="quizReset">Reiniciar</button>
+        <p class="quiz-score" id="quizScore" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">13</span>
+</section>
+
+<!-- ══════════════════════════ 14 · LOS DOS REGÍMENES ══════════════════════════ -->
+<section class="panel" id="p14" data-nav="Los dos regímenes" data-chapter="§ 8 · Cómo funciona" data-accent="magenta">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 8 <span class="pg">pp. 177–178</span></p>
+      <h2>Los dos regímenes de la genericidad</h2>
+      <p class="lead">Solemos identificar la genericidad con uno solo de sus regímenes. Reduplicación y transformación son las dos caras de una misma función textual. Mueve el dial.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-regimenes" data-anim>
+      <div class="stage tight">
+        <svg id="svgReg" viewBox="0 0 1100 230" role="img" aria-label="Dial entre reduplicación y transformación genérica">
+          <g id="regShapes"></g>
+        </svg>
+      </div>
+      <div class="dial">
+        <span class="dial-end left">Reduplicación</span>
+        <input type="range" id="regRange" min="0" max="100" step="1" value="0" aria-label="Grado de transformación genérica">
+        <span class="dial-end right">Transformación</span>
+      </div>
+      <div class="dial-readout" id="regReadout" aria-live="polite"></div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">14</span>
+</section>
+
+<!-- ══════════════════════════ 15 · QUIJOTE ══════════════════════════ -->
+<section class="panel" id="p15" data-nav="Mesa de trabajo: el Quijote" data-chapter="§ 8 · Cómo funciona" data-accent="magenta">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 8 <span class="pg">p. 178</span></p>
+      <h2>Mesa de trabajo: el <i>Quijote</i></h2>
+      <p class="lead">Cervantes trabaja sobre <b>rasgos aislados elegidos en niveles distintos</b>, no sobre el modelo completo. Elige qué toma y mira qué sale.</p>
+    </header>
+
+    <div class="quijote" id="quijote" data-anim>
+      <div class="qj-model">
+        <p class="qj-h">Armazón de la novela de caballerías</p>
+        <div class="qj-levels" id="qjLevels"></div>
+        <div class="qj-mode">
+          <label class="switch-lab">
+            <input type="checkbox" id="qjWhole">
+            <span>Tomar el <b>modelo completo</b> e integrado</span>
+          </label>
+        </div>
+      </div>
+      <div class="qj-arrow" aria-hidden="true">→</div>
+      <div class="qj-result" id="qjResult"></div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">15</span>
+</section>
+
+<!-- ══════════════════════════ 16 · PERTINENCIA ══════════════════════════ -->
+<section class="panel" id="p16" data-nav="El criterio de pertinencia" data-chapter="§ 9 · El criterio" data-accent="salvia">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 9 <span class="pg">p. 178</span></p>
+      <h2>El criterio de pertinencia</h2>
+      <p class="lead">No todas las similitudes son pertinentes genéricamente. El criterio esencial es la <b>copresencia de similitudes en niveles textuales diferentes</b>.</p>
+    </header>
+
+    <div class="apparatus" id="ap-pertinencia" data-anim>
+      <div class="levels" id="levels"></div>
+      <div class="gauge-box">
+        <svg id="svgGauge" viewBox="0 -14 420 204" role="img" aria-label="Aguja de pertinencia genérica">
+          <path class="g-arc a1" d="M 82 158 A 128 128 0 0 1 124.4 62.9"/>
+          <path class="g-arc a2" d="M 131.2 57.1 A 128 128 0 0 1 288.8 57.1"/>
+          <path class="g-arc a3" d="M 295.6 62.9 A 128 128 0 0 1 338 158"/>
+          <g class="g-ticks">
+            <line class="g-tick" x1="127" y1="80" x2="137" y2="86"/>
+            <line class="g-tick" x1="293" y1="80" x2="283" y2="86"/>
+            <line class="g-tick" x1="210" y1="42" x2="210" y2="54"/>
+          </g>
+          <g class="g-needle" id="gNeedle"><line x1="210" y1="158" x2="210" y2="56"/></g>
+          <circle class="g-hub" cx="210" cy="158" r="9"/>
+          <text class="g-t left" x="76" y="180">no pertinente</text>
+          <text class="g-t mid" x="210" y="14" text-anchor="middle">indicio</text>
+          <text class="g-t right" x="344" y="180" text-anchor="end">pertinente</text>
+        </svg>
+        <p class="gauge-verdict" id="gaugeVerdict" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">16</span>
+</section>
+
+<!-- ══════════════════════════ 17 · INVENTARIO ══════════════════════════ -->
+<section class="panel" id="p17" data-nav="Géneros y relaciones textuales" data-chapter="§ 10 · El nivel de abstracción" data-accent="coral">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">§ 10 <span class="pg">p. 179</span></p>
+      <h2>Géneros y relaciones textuales posibles</h2>
+      <p class="lead">Selecciona cada ficha y colócala en su estante. Aquí se deshace una confusión muy común: la parodia no es un género.</p>
+    </header>
+
+    <div class="apparatus col" id="ap-inventario" data-anim>
+      <div class="chip-pool" id="chipPool" role="group" aria-label="Fichas por clasificar"></div>
+      <div class="shelves">
+        <div class="shelf" data-shelf="relacion">
+          <p class="shelf-h">Relaciones textuales posibles</p>
+          <p class="shelf-sub">Disponibles siempre y en todas partes</p>
+          <div class="shelf-drop" id="shelfRelacion"></div>
+          <button type="button" class="btn small shelf-btn" data-place="relacion">Colocar aquí</button>
+        </div>
+        <div class="shelf" data-shelf="genero">
+          <p class="shelf-h">Géneros</p>
+          <p class="shelf-sub">Configuraciones históricas concretas y únicas</p>
+          <div class="shelf-drop" id="shelfGenero"></div>
+          <button type="button" class="btn small shelf-btn" data-place="genero">Colocar aquí</button>
+        </div>
+      </div>
+      <div class="quiz-bar">
+        <button type="button" class="btn primary" id="invCheck">Comprobar</button>
+        <button type="button" class="btn" id="invReset">Reiniciar</button>
+        <p class="quiz-score" id="invScore" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">17</span>
+</section>
+
+<!-- ══════════════════════════ 18 · CIERRE DEL ARGUMENTO ══════════════════════════ -->
+<section class="panel" id="p18" data-nav="Cierre: la disolución" data-chapter="§ 10 · El nivel de abstracción" data-accent="coral">
+  <div class="panel-inner center">
+    <blockquote class="quote hero-quote" data-anim>
+      <p>«La parodia es una relación textual posible —lo es desde siempre y en todas partes—,
+      mientras que un género es siempre una configuración histórica concreta y única»</p>
+      <cite>p. 179</cite>
+    </blockquote>
+
+    <div class="two-col" data-anim>
+      <div class="note">
+        <p class="note-h">La disolución del problema central</p>
+        <p>Los textos que funcionan como modelo genérico <b>están presentes en el texto</b>, no como
+        cita, sino como armazón formal, narrativo, temático o ideológico. La relación architextual
+        que postulamos está siempre basada, de hecho, en una relación de hipertextualidad más o
+        menos múltiple. El problema real está en el nivel de la <b>circulación textual</b>.
+        <span class="pgi">p. 177</span></p>
+      </div>
+      <div class="note">
+        <p class="note-h">La confirmación paradójica</p>
+        <p>En la literatura seria contemporánea es difícil fijar clasificaciones, aunque esos textos
+        se presten muy bien al estudio de la genericidad. Como la clasificación solo sabe ver, en
+        toda transformación, un género nuevo o un texto a-genérico, nace la tesis de que <b>los
+        grandes textos no serían nunca genéricos</b>: un efecto óptico del instrumento.
+        <span class="pgi">p. 179</span></p>
+      </div>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">18</span>
+</section>
+
+<!-- ══════════════════════════ 19 · MAPA ══════════════════════════ -->
+<section class="panel" id="p19" data-nav="Mapa del argumento" data-chapter="Cierre" data-accent="oro">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">Cierre</p>
+      <h2>El argumento entero, de un vistazo</h2>
+      <p class="lead">Pulsa cualquier paso para volver a su estación.</p>
+    </header>
+
+    <ol class="map" id="argMap" data-anim>
+      <li data-go="p1"><span class="map-n">1</span><b>Desactivar la pregunta</b><i>Se desvía sola hacia una pregunta ontológica que la teoría literaria no puede ganar.</i></li>
+      <li data-go="p3"><span class="map-n">2</span><b>Retirar dos postulados</b><i>El texto como cosa y el género como exterioridad transcendente.</i></li>
+      <li data-go="p5"><span class="map-n">3</span><b>Probarlo con un caso</b><i>La epopeya heroica germánica: textualmente, no existe.</i></li>
+      <li data-go="p7"><span class="map-n">4</span><b>Reconcebir el texto</b><i>No un sistema cerrado sino una cadena abierta.</i></li>
+      <li data-go="p9"><span class="map-n">5</span><b>Encontrar la grieta</b><i>Hay architextualidad pero no architexto.</i></li>
+      <li data-go="p11"><span class="map-n">6</span><b>Datar el error</b><i>Proyectar el género retrospectivo sobre la producción es un error de lógica temporal.</i></li>
+      <li data-go="p12"><span class="map-n">7</span><b>Separar dos objetos</b><i>Género: categoría de lectura. Genericidad: función textual productiva.</i></li>
+      <li data-go="p14"><span class="map-n">8</span><b>Describir su funcionamiento</b><i>Dos regímenes; el de la transformación es el mejor terreno de estudio.</i></li>
+      <li data-go="p17"><span class="map-n">9</span><b>Fijar el nivel de abstracción</b><i>Un género es una configuración histórica; la parodia, una relación posible.</i></li>
+    </ol>
+  </div>
+  <span class="p-ghost" aria-hidden="true">19</span>
+</section>
+
+<!-- ══════════════════════════ 20 · GLOSARIO Y FUENTE ══════════════════════════ -->
+<section class="panel" id="p20" data-nav="Glosario y fuente" data-chapter="Cierre" data-accent="oro">
+  <div class="panel-inner">
+    <header class="p-head" data-anim>
+      <p class="p-kicker">Aparato</p>
+      <h2>Glosario operativo</h2>
+    </header>
+
+    <dl class="glossary-grid" id="glossary" data-anim></dl>
+
+    <div class="source" data-anim>
+      <p><b>Fuente.</b> Schaeffer, Jean-Marie. «Del texto al género. Notas sobre la problemática
+      genérica». En Miguel Á. Garrido Gallardo (ed.), <i>Teoría de los géneros literarios</i>,
+      Madrid, Arco/Libros, 1988, pp. 155–179. Traducción de Antonio Fernández Ferrer. Original:
+      «Du texte au genre. Notes sur la problématique générique», <i>Poétique</i>, 53 (1983),
+      pp. 3–18.</p>
+      <p>Las citas breves llevan su número de página de esa edición. Los diagramas, la gradación
+      visual y la notación de los aparatos son de esta presentación, no de Schaeffer: sirven para
+      hacer manipulable el argumento. La gradación de «espíritu germánico» reproduce
+      cualitativamente lo que Schaeffer atribuye a la crítica decimonónica —hegemónico en la
+      <i>Canción de los nibelungos</i>, debilitado en el <i>Poema de Kudrun</i>, casi sin huellas
+      en <i>La muerte de Alphart</i>—; las alturas de las barras son un esquema visual, no un dato
+      medido.</p>
+    </div>
+  </div>
+  <span class="p-ghost" aria-hidden="true">20</span>
+</section>
+
+</div><!-- /track -->
+</main>
+
+<nav class="deck-nav" aria-label="Navegación de estaciones">
+  <button type="button" class="nav-arrow" id="btnPrev" aria-label="Estación anterior">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 L5 8 L10 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="nav-dots" id="navDots"></div>
+  <button type="button" class="nav-arrow" id="btnNext" aria-label="Estación siguiente">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3 L11 8 L6 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <p class="nav-counter" id="navCounter"></p>
+</nav>
+
+<div class="deck-progress" aria-hidden="true"><i id="progBar"></i></div>
+
+</div><!-- /stage-frame -->
+
+<p class="rotate-hint">Gira el dispositivo para ver la diapositiva a tamaño completo.</p>
+
+<script src="assets/lab.js"></script>
+</body>
+</html>
